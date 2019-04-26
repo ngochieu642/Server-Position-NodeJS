@@ -16,7 +16,7 @@ var myLongitude,myLatitude;
 
 //Variable for Android CLient
 var myPosition;
-myPosition={"Latitude":11.23,"Longitude":101.5};
+myPosition={"Latitude":11.23,"Longitude":111.5};
 
 var count =0;
 
