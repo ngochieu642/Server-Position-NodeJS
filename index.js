@@ -32,7 +32,6 @@ io.sockets.on('connection',function(socket){
         
         console.log("Python Client Detected: ");
         console.log(myPosition);
-
         socket.emit('server-receive-done-python');
     });
 
