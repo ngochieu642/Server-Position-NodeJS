@@ -15,15 +15,28 @@ app.get("/",function(req,res){
 var myLongitude,myLatitude;
 
 //Variable for Android CLient
-var myPosition;
-myPosition={"Latitude":10.896868,"Longitude":106.801376};
+var ElekPosition;
+ElekPosition={"Latitude":10.896868,"Longitude":106.801376};
+
+//Variable for true position
+var myPosition; //JSONObject for receiving information
 
 var count =0;
 
 io.sockets.on('connection',function(socket){
     console.log("Device connected to the server");
 
-    //Timer task
+    //Receive From Python
+    socket.on('python-send-vehicle-position',function(position){
+        myPosition = position;
+        
+        console.log("Python Client Detected: ");
+        console.log(myPosition);
+
+        socket.emit('server-receive-done-python');
+    });
+
+    //Timer task send to Android
     var myTimer = setInterval(function(){
         console.log("\n\n"+count+" Times");
         console.log("Sending Infomation to stream...");
