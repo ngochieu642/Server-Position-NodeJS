@@ -39,7 +39,7 @@ io.sockets.on('connection',function(socket){
         console.log("Sending Infomation to stream...");
         try {
             if(myPosition!=null)
-            console.log("Sending: "+myPosition);
+            console.log("Sending: "+JSON.stringify(myPosition));
             socket.emit('server-send-vehicle-position',myPosition);   
             console.log('Send Successfully!');
             count++;
