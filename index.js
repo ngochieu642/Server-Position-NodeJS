@@ -11,8 +11,6 @@ app.get("/",function(req,res){
     res.sendFile(__dirname+"/index.html");
 });
 
-//Variable for getting position from Python Client
-var myLongitude,myLatitude;
 
 //Variable for Android CLient
 var ElekPosition;
@@ -41,6 +39,7 @@ io.sockets.on('connection',function(socket){
         console.log("Sending Infomation to stream...");
         try {
             if(myPosition!=null)
+            console.log("Sending: "+myPosition);
             socket.emit('server-send-vehicle-position',myPosition);   
             console.log('Send Successfully!');
             count++;
