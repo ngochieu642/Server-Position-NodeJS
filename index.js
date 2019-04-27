@@ -24,6 +24,30 @@ var count =0;
 io.sockets.on('connection',function(socket){
     console.log("Device connected to the server");
 
+    //Python Clients handle request
+    socket.on('python-client-connected',function(){
+        //Timer task send to Android
+        var myTimer = setInterval(function(){
+            console.log("\n\n"+count+" Times");
+            console.log("Sending Infomation to stream...");
+            try {
+                if(myPosition!=null)
+                console.log("Sending: "+JSON.stringify(myPosition));
+                socket.emit('server-send-vehicle-position',myPosition);   
+                console.log('Send Successfully!');
+                count++;
+            } catch (error) {
+                console.log(error);
+            }
+        },10000);
+
+        //Handle the disconnect event
+        socket.on('disconnect',function(){
+            console.log(socket +" Got Disconnect");
+            console.log("Stop timer Thread of this socket...\n\n");
+            clearInterval(myTimer);
+        });
+    });
     //Receive From Python
     socket.on('python-send-vehicle-position',function(position){
         myPosition = position;
@@ -31,28 +55,6 @@ io.sockets.on('connection',function(socket){
         console.log("Python Client Detected: ");
         console.log(myPosition);
         socket.emit('server-receive-done-python');
-    });
-
-    //Timer task send to Android
-    var myTimer = setInterval(function(){
-        console.log("\n\n"+count+" Times");
-        console.log("Sending Infomation to stream...");
-        try {
-            if(myPosition!=null)
-            console.log("Sending: "+JSON.stringify(myPosition));
-            socket.emit('server-send-vehicle-position',myPosition);   
-            console.log('Send Successfully!');
-            count++;
-        } catch (error) {
-            console.log(error);
-        }
-    },10000);
-
-    //Handle the disconnect event
-    socket.on('disconnect',function(){
-        console.log(JSON.stringify(socket)+" Got Disconnect");
-        console.log("Stop timer Thread of this socket...\n\n");
-        clearInterval(myTimer);
     });
 });
 
