@@ -46,7 +46,7 @@ io.sockets.on('connection',function(socket){
         } catch (error) {
             console.log(error);
         }
-    },20000);
+    },5000);
 
     //Handle the disconnect event
     socket.on('disconnect',function(socket){
