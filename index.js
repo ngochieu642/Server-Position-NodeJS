@@ -3,6 +3,7 @@ var app     = express();
 var server  = require('http').createServer(app);
 var io      = require('socket.io').listen(server);
 var fs      = require("fs");
+var util = require('util');
 
 server.listen(process.env.PORT || 11);
 console.log("Server is running on port 11");
@@ -29,7 +30,7 @@ io.sockets.on('connection',function(socket){
         //Timer task send to Android
         var myTimer = setInterval(function(){
             console.log("\n\n"+count+" Times");
-            console.log(JSON.stringify(socket));
+            console.log(util.inspect(socket));
             console.log("Sending Infomation to stream...");
             try {
                 if(myPosition!=null)
@@ -44,7 +45,7 @@ io.sockets.on('connection',function(socket){
 
         //Handle the disconnect event
         socket.on('disconnect',function(){
-            console.log(JSON.stringify(socket));
+            console.log(util.inspect(socket));
             console.log("Got Disconnect");
             console.log("Stop timer Thread of this socket...\n\n");
             clearInterval(myTimer);
