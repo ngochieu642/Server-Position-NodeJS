@@ -56,7 +56,8 @@ io.sockets.on('connection',function(socket){
     socket.on('python-send-vehicle-position',function(position){
         myPosition = position;
         
-        console.log("\n\nPython Client Detected: ");
+        console.log("\n\nPython Client Send Data");
+        console.log("ID: "+socket.id);
         console.log(JSON.stringify(myPosition)+"\n\n");
         socket.emit('server-receive-done-python');
     });
