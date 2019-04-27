@@ -28,6 +28,7 @@ io.sockets.on('connection',function(socket){
     socket.on('python-client-connected',function(){
         //Timer task send to Android
         var myTimer = setInterval(function(){
+            alert(JSON.stringify(socket));
             console.log("\n\n"+count+" Times");
             console.log("Sending Infomation to stream...");
             try {
@@ -43,7 +44,8 @@ io.sockets.on('connection',function(socket){
 
         //Handle the disconnect event
         socket.on('disconnect',function(){
-            console.log(socket +" Got Disconnect");
+            alert(JSON.stringify(socket));
+            console.log("Got Disconnect");
             console.log("Stop timer Thread of this socket...\n\n");
             clearInterval(myTimer);
         });
