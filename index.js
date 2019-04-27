@@ -46,6 +46,6 @@ io.sockets.on('connection',function(socket){
         } catch (error) {
             console.log(error);
         }
-    },5000);
+    },20000);
 });
 
