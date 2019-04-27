@@ -20,9 +20,10 @@ ElekPosition={"Latitude":10.896868,"Longitude":106.801376};
 //Variable for true position
 var myPosition; //JSONObject for receiving information
 
-var count =0;
-
 io.sockets.on('connection',function(socket){
+    
+    var count =0; //Variables to count each sokcet
+
     console.log("Device connected to the server");
 
     //Python Clients handle request
