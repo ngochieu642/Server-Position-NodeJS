@@ -37,7 +37,7 @@ io.sockets.on('connection',function(socket){
                 if(myPosition!=null)
                 console.log("Sending: "+JSON.stringify(myPosition));
                 socket.emit('server-send-vehicle-position',myPosition);   
-                console.log('Send Successfully!');
+                console.log('Send Successfully!\n\n');
                 count++;
             } catch (error) {
                 console.log(error);
@@ -46,7 +46,7 @@ io.sockets.on('connection',function(socket){
 
         //Handle the disconnect event
         socket.on('disconnect',function(){
-            console.log("ID: "+socket.id);
+            console.log("\n\nID: "+socket.id);
             console.log("Got Disconnect");
             console.log("Stop timer Thread of this socket...\n\n");
             clearInterval(myTimer);
@@ -56,8 +56,8 @@ io.sockets.on('connection',function(socket){
     socket.on('python-send-vehicle-position',function(position){
         myPosition = position;
         
-        console.log("Python Client Detected: ");
-        console.log(myPosition);
+        console.log("\n\nPython Client Detected: ");
+        console.log(myPosition+"\n\n");
         socket.emit('server-receive-done-python');
     });
 });
