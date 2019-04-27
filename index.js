@@ -34,7 +34,7 @@ io.sockets.on('connection',function(socket){
     });
 
     //Timer task send to Android
-    var myTimer = setInterval(function(){
+    var myTimer = setInterval(function(socket){
         console.log("\n\n"+count+" Times");
         console.log("Sending Infomation to stream...");
         try {
@@ -47,5 +47,11 @@ io.sockets.on('connection',function(socket){
             console.log(error);
         }
     },20000);
+
+    //Handle the disconnect event
+    socket.on('disconnect',function(socket){
+        console.log(socket + " got disconnect");
+        clearInterval(myTimer);
+    });
 });
 
