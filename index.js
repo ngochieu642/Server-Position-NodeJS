@@ -3,7 +3,7 @@ var app     = express();
 var server  = require('http').createServer(app);
 var io      = require('socket.io').listen(server);
 var fs      = require("fs");
-var util = require('util');
+var util    = require('util');
 
 server.listen(process.env.PORT || 11);
 console.log("Server is running on port 11");
