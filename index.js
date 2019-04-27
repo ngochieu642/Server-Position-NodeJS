@@ -57,7 +57,7 @@ io.sockets.on('connection',function(socket){
         myPosition = position;
         
         console.log("\n\nPython Client Detected: ");
-        console.log(myPosition+"\n\n");
+        console.log(JSON.stringify(myPosition)+"\n\n");
         socket.emit('server-receive-done-python');
     });
 });
