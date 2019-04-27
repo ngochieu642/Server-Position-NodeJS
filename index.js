@@ -50,7 +50,8 @@ io.sockets.on('connection',function(socket){
 
     //Handle the disconnect event
     socket.on('disconnect',function(){
-        console.log(socket+" Got Disconnect");
+        console.log(JSON.stringify(socket)+" Got Disconnect");
+        console.log("Stop timer Thread of this socket...\n\n");
         clearInterval(myTimer);
     });
 });
