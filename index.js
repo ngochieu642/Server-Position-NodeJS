@@ -66,7 +66,7 @@ io.sockets.on('connection',function(socket){
     });
 
     socket.on('android-client-connected',function(hi_message){
-        console.log('Android client Connected!\nID: +socket.id');
+        console.log('Android client Connected!\nID: '+socket.id);
         console.log(hi_message);
     });
 });
