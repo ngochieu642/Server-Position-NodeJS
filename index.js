@@ -22,8 +22,6 @@ var myPosition; //JSONObject for receiving information
 
 io.sockets.on('connection',function(socket){
     
-    var count =0; //Variables to count each sokcet
-
     console.log("Device connected to the server");
 
     //Python Clients handle request
@@ -31,6 +29,7 @@ io.sockets.on('connection',function(socket){
         console.log('Python client connected!\nID: '+socket.id);
 
         //Timer task send to Python Thread
+        var count =0; //Variables to count each socket
         var myTimer = setInterval(function(){
             console.log("\n\n"+count+" Times");
             console.log("Sending to socket Python Client, ID: "+ socket.id);
@@ -59,7 +58,7 @@ io.sockets.on('connection',function(socket){
         //Handle the disconnect event
         socket.on('disconnect',function(){
             console.log("\n\nID: "+socket.id);
-            console.log("Got Disconnect");
+            console.log("Python client got disconnect");
             console.log("Stop timer Thread of this socket...\n\n");
             clearInterval(myTimer);
         });
@@ -68,6 +67,31 @@ io.sockets.on('connection',function(socket){
     socket.on('android-client-connected',function(hi_message){
         console.log('Android client Connected!\nID: '+socket.id);
         console.log(hi_message);
+
+          //Timer task send to Android Thread
+        var count = 0;
+        var myTimer = setInterval(function(){
+        console.log("\n\n"+count+" Times");
+        console.log("Sending to socket Android Client, ID: "+ socket.id);
+        console.log("Sending Infomation to stream...");
+        try {
+            if(myPosition!=null)
+            console.log("Sending: "+JSON.stringify(myPosition));
+            socket.emit('server-send-vehicle-position',myPosition);   
+            console.log('Send Successfully!\n\n');
+            count++;
+        } catch (error) {
+            console.log(error);
+        }
+        },10000);
+
+        //Handle the disconnect event
+        socket.on('disconnect',function(){
+            console.log("\n\nID: "+socket.id);
+            console.log("Android client got disconnect");
+            console.log("Stop timer Thread of this socket...\n\n");
+            clearInterval(myTimer);
+        });
     });
 });
 
