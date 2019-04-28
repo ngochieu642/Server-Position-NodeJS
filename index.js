@@ -54,6 +54,7 @@ io.sockets.on('connection',function(socket){
             console.log(JSON.stringify(myPosition)+"\n\n");
             socket.emit('server-receive-done-python');
         });
+
         //Handle the disconnect event
         socket.on('disconnect',function(){
             console.log("\n\nID: "+socket.id);
@@ -61,6 +62,10 @@ io.sockets.on('connection',function(socket){
             console.log("Stop timer Thread of this socket...\n\n");
             clearInterval(myTimer);
         });
+    });
+
+    socket.on('android-client-connected',function(){
+        
     });
 });
 
