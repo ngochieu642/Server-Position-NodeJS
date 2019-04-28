@@ -33,7 +33,7 @@ io.sockets.on('connection',function(socket){
         //Timer task send to Python Thread
         var myTimer = setInterval(function(){
             console.log("\n\n"+count+" Times");
-            console.log("Sending to socket ID: "+ socket.id);
+            console.log("Sending to socket Python Client, ID: "+ socket.id);
             console.log("Sending Infomation to stream...");
             try {
                 if(myPosition!=null)
