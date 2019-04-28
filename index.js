@@ -28,11 +28,12 @@ io.sockets.on('connection',function(socket){
 
     //Python Clients handle request
     socket.on('python-client-connected',function(){
+        console.log('Python client connected!\nID: '+socket.id);
 
         //Timer task send to Python Thread
         var myTimer = setInterval(function(){
             console.log("\n\n"+count+" Times");
-            console.log("ID: "+ socket.id);
+            console.log("Sending to socket ID: "+ socket.id);
             console.log("Sending Infomation to stream...");
             try {
                 if(myPosition!=null)
@@ -64,8 +65,9 @@ io.sockets.on('connection',function(socket){
         });
     });
 
-    socket.on('android-client-connected',function(){
-        
+    socket.on('android-client-connected',function(hi_message){
+        console.log('Android client Connected!\nID: +socket.id');
+        console.log(hi_message);
     });
 });
 
