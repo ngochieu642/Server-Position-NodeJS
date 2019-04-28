@@ -28,7 +28,8 @@ io.sockets.on('connection',function(socket){
 
     //Python Clients handle request
     socket.on('python-client-connected',function(){
-        //Timer task send to Android
+
+        //Timer task send to Python Thread
         var myTimer = setInterval(function(){
             console.log("\n\n"+count+" Times");
             console.log("ID: "+ socket.id);
@@ -43,7 +44,16 @@ io.sockets.on('connection',function(socket){
                 console.log(error);
             }
         },10000);
-
+        
+        //Receive From Python
+        socket.on('python-send-vehicle-position',function(position){
+            myPosition = position;
+            
+            console.log("\n\nPython Client Send Data");
+            console.log("ID: "+socket.id);
+            console.log(JSON.stringify(myPosition)+"\n\n");
+            socket.emit('server-receive-done-python');
+        });
         //Handle the disconnect event
         socket.on('disconnect',function(){
             console.log("\n\nID: "+socket.id);
@@ -51,15 +61,6 @@ io.sockets.on('connection',function(socket){
             console.log("Stop timer Thread of this socket...\n\n");
             clearInterval(myTimer);
         });
-    });
-    //Receive From Python
-    socket.on('python-send-vehicle-position',function(position){
-        myPosition = position;
-        
-        console.log("\n\nPython Client Send Data");
-        console.log("ID: "+socket.id);
-        console.log(JSON.stringify(myPosition)+"\n\n");
-        socket.emit('server-receive-done-python');
     });
 });
 
