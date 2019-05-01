@@ -1,1 +1,159 @@
-<h1>This is the server !!</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+            html, body {
+              width:100%;
+              height:100%;
+              margin:0px;
+              padding:0px;
+              font-size: 16px;
+            }
+      
+            * {
+              box-sizing: border-box;
+            }
+      
+            *:active {
+              outline:none;
+            }
+            
+            #content {
+              display:grid;
+              grid-template-columns: 300px auto;
+              height:100%;
+            }
+      
+            #nav {
+              width: 100%;
+              height: 50px;
+              text-align:left;
+              height:100%;
+              background-color:#ffcc88;
+      
+            }
+            
+            #nav a {
+              line-height:50px;
+              text-decoration:none;
+              color: black;
+              font-variant:small-caps;
+              font-size: 32px;
+              display: block;
+            }
+      
+            #nav a:hover {
+              background-color: rgba(0,0,0,0.1)
+            }
+      
+            main {
+              display:inline-block;
+              margin:0px;
+              height:100%;
+            }
+            
+            .page {
+              display: none;
+              background-color:#ffeecc;
+              padding-left:20px;
+              padding-top:20px;
+              margin:0px;
+              height: 100%;
+            }
+            
+            .page h1 {
+              margin:0px;
+            }
+            
+            .default {
+              display:block;
+            }
+            
+            :target {
+              display:block;
+            }
+            
+            :target ~ .default {
+              display:none;
+            }
+      
+          </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Autonomous Agri Robot</title>
+    <!--This  a comment-->
+</head>
+
+<body style="font-family: 'Segoe UI'">
+    <h1>Autonomous Agri-vehicle Control System</h1>
+    <hr>
+    <!--Our Menus-->
+    <div id="content">    
+        <nav id="nav">
+            <a href="#description">Description</a>
+            <a href="#details">Details</a>
+            <a href="#files">Files</a>
+            <a href="#contributor">Contributors</a>
+        </nav>
+
+        <main>
+            <!--Our Pages-->
+            <div id="description" class="page">
+                <h3>Description</h3>
+                <p>
+                    Having robots on farms will help negate the need for pesticides, chemicals and destruction of soil structure. The machine need to be fully autonomous and features in the control system should include:
+        
+                    <ol>
+                        <li>High accuracy, error correcting GPS/GNSS with RTK</li>
+                        <li>Micro processors for controlling electric motors, electric valves and enabling parallel processing. Linked via SPI </li>
+                        <li>Cellular 2G/3G/4G data comms</li>
+                        <li>Object Recognition and positioning for distinguishing weed from soil </li>
+                        <li>Application that points out the robot's position</li>
+                    </ol>
+        
+                    At present, the system will concentrate on one simple task: weeb prevention
+                </p>
+            </div>
+        
+            <div id="details" class="page">
+                <h3>Details</h3>
+                <p>
+                    An agricultural robot has different requirements.
+                    <ul>
+                        <li>Super accurate GPS/GNSS-not just one unit, but two, enabling error correction between the two-one is static(base) and the other roving.</li>
+                        <li>A mean of communications for the robot to receive signal from base, as well as to send useful information back to Web Server</li>
+                        <li>Ai based object recognition that is fast has acceptable accuracy</li>
+                    </ul>
+                </p>
+            </div>
+        
+            <div id="files" class="page">
+                <h3>Files</h3>
+                <p>
+                    <ul>
+                        <li>STM32F407VG files: The processing unit of RTK algorithm, communicates with Android Phone and Raspberry</li>
+                        <li>STM32F1C308 files: I/O Controller(valves and motors)</li>
+                        <li>Raspberry Pi 3 B+ files: Object Recognition CNN</li>
+                        <li>Jetson Nano: Can be used as a stronger version of Raspberry</li>
+                        <li>Android Phone On board files: Receives GPS/GNSS messages from base</li>
+                        <li>Base files: Transmit GPS/GNSS messages from base to rover</li>
+                    </ul>
+                </p>
+            </div>
+            
+            <div id="contributor" class="page">
+                <h3>Contributors</h3>
+                <p>
+                    <ul>
+                        <li><a href="https://github.com/Agent2H">Lê Quang Huy</a></li>
+                        <li><a href="https://github.com/ngochieu642">Thái Ngọc Hiếu</a></li>
+                    </ul>
+                </p>
+            </div>            
+        </main>
+    </div>
+</body>
+</html>

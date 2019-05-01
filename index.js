@@ -5,8 +5,8 @@ var io      = require('socket.io').listen(server);
 var fs      = require("fs");
 var util    = require('util');
 
-server.listen(process.env.PORT || 11);
-console.log("Server is running on port 11");
+server.listen(process.env.PORT || 3000);
+console.log("Server is running on port 3000");
 
 app.get("/",function(req,res){
     res.sendFile(__dirname+"/index.html");
@@ -20,6 +20,7 @@ ElekPosition={"Latitude":10.896868,"Longitude":106.801376};
 //Variable for true position
 var myPosition; //JSONObject for receiving information
 
+//Listen to Client
 io.sockets.on('connection',function(socket){
     
     console.log("Device connected to the server");
